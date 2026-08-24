@@ -9,17 +9,19 @@
 <link href="https://fonts.googleapis.com/css2?family=Song+Myung&family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Serif+KR:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink:#17140f;
-    --ink-2:#1e1a13;
-    --ink-3:#26211a;
+    --ink:#e5f0f8;
+    --ink-2:#d6e6f1;
+    --ink-3:#f2f8fb;
+    --deep:#14273a;
     --paper:#e7dec3;
     --paper-2:#ddd1ac;
     --seal:#9c2b22;
     --seal-dark:#7c211a;
-    --gold:#b4923a;
-    --gold-soft:rgba(180,146,58,.38);
-    --text-onink:#ece4d1;
-    --text-onink-muted:#a79e8a;
+    --gold:#93701e;
+    --gold-soft:rgba(147,112,30,.35);
+    --gold-oncard:#e4c878;
+    --text-onink:#1b2a3a;
+    --text-onink-muted:#5b7386;
     --text-onpaper:#241f16;
     --text-onpaper-muted:#6b6248;
     --font-seal:'Song Myung', serif;
@@ -49,7 +51,7 @@
   /* ---------- texture ---------- */
   .grain{
     position:fixed; inset:0; pointer-events:none; z-index:1;
-    opacity:.05; mix-blend-mode:overlay;
+    opacity:.035; mix-blend-mode:multiply;
     background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   }
 
@@ -57,7 +59,7 @@
   .rail{
     position:fixed; left:0; top:0; bottom:0; width:var(--rail-w);
     display:flex; align-items:center; z-index:40;
-    border-right:1px solid rgba(180,146,58,.18);
+    border-right:1px solid rgba(147,112,30,.28);
   }
   .rail ol{list-style:none; margin:0; padding:0; width:100%;}
   .rail li{margin:0;}
@@ -88,8 +90,8 @@
   .pillnav{
     display:none;
     position:sticky; top:0; z-index:40;
-    background:rgba(23,20,15,.92); backdrop-filter:blur(6px);
-    border-bottom:1px solid rgba(180,146,58,.2);
+    background:rgba(229,240,248,.92); backdrop-filter:blur(6px);
+    border-bottom:1px solid rgba(147,112,30,.3);
     overflow-x:auto; white-space:nowrap;
     padding:10px 14px;
     -ms-overflow-style:none; scrollbar-width:none;
@@ -98,11 +100,11 @@
   .pillnav a{
     display:inline-block; margin-right:8px;
     padding:6px 14px; border-radius:999px;
-    border:1px solid rgba(180,146,58,.35);
+    border:1px solid rgba(147,112,30,.4);
     font-family:var(--font-ui); font-size:12.5px; color:var(--text-onink-muted);
     text-decoration:none;
   }
-  .pillnav a.active{color:var(--ink); background:var(--gold); border-color:var(--gold);}
+  .pillnav a.active{color:#fbf6ea; background:var(--gold); border-color:var(--gold);}
   @media (max-width: 860px){
     .pillnav{display:block;}
   }
@@ -124,7 +126,7 @@
   .hero::before{
     content:""; position:absolute; right:-12%; top:-18%;
     width:640px; height:640px; border-radius:50%;
-    background:radial-gradient(circle at 35% 35%, rgba(180,146,58,.14), transparent 70%);
+    background:radial-gradient(circle at 35% 35%, rgba(255,255,255,.65), transparent 70%);
     pointer-events:none;
   }
   .hero-seal{
@@ -172,7 +174,7 @@
   .era{
     padding:96px 8vw 40px;
     scroll-margin-top:24px;
-    border-top:1px solid rgba(180,146,58,.12);
+    border-top:1px solid rgba(147,112,30,.2);
   }
   .era:nth-of-type(even){background:var(--ink-2);}
 
@@ -220,7 +222,7 @@
   .card{
     background:var(--paper); color:var(--text-onpaper);
     border-radius:3px; padding:26px 24px 24px;
-    box-shadow:0 14px 30px rgba(0,0,0,.28);
+    box-shadow:0 10px 26px rgba(20,45,70,.16);
     opacity:0; transform:translateY(16px);
     transition:opacity .55s ease, transform .55s ease;
     position:relative;
@@ -237,7 +239,7 @@
     display:flex; align-items:center; justify-content:center;
     font-family:var(--font-seal); font-size:19px;
     transform:rotate(-4deg);
-    box-shadow:0 2px 6px rgba(0,0,0,.25);
+    box-shadow:0 2px 6px rgba(20,45,70,.2);
   }
   .card-name h3{
     font-family:var(--font-title); font-size:19px; font-weight:800;
@@ -256,7 +258,7 @@
   }
   .tag{
     font-family:var(--font-ui); font-size:11.5px; font-weight:600;
-    background:var(--ink); color:var(--gold);
+    background:var(--deep); color:var(--gold-oncard);
     display:inline-block; padding:7px 12px; border-radius:999px;
     letter-spacing:.01em;
   }
@@ -264,7 +266,7 @@
   /* ---------- addendum (고증노트) ---------- */
   .addendum{
     padding:96px 8vw;
-    border-top:1px solid rgba(180,146,58,.12);
+    border-top:1px solid rgba(147,112,30,.2);
   }
   .addendum-head{max-width:1180px; margin:0 auto 40px;}
   .addendum-head .era-eyebrow{margin-bottom:8px;}
@@ -277,7 +279,7 @@
   .note-list{max-width:1180px; margin:0 auto; display:flex; flex-direction:column; gap:14px;}
   .note{
     display:flex; gap:18px; align-items:flex-start;
-    background:var(--ink-3); border:1px solid rgba(180,146,58,.16);
+    background:var(--ink-3); border:1px solid rgba(147,112,30,.22);
     border-radius:4px; padding:18px 22px;
   }
   .note-num{
@@ -295,7 +297,7 @@
   /* ---------- footer ---------- */
   footer{
     padding:56px 8vw 80px;
-    border-top:1px solid rgba(180,146,58,.15);
+    border-top:1px solid rgba(147,112,30,.22);
     display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;
   }
   footer .brand{font-family:var(--font-title); font-weight:800; font-size:18px; color:var(--gold);}
@@ -311,14 +313,14 @@
     display:flex; align-items:center; justify-content:center;
     opacity:0; pointer-events:none; transform:translateY(10px) rotate(-4deg);
     transition:opacity .3s ease, transform .3s ease;
-    box-shadow:0 8px 20px rgba(0,0,0,.35);
+    box-shadow:0 8px 20px rgba(20,45,70,.28);
   }
   .totop.show{opacity:1; pointer-events:auto; transform:translateY(0) rotate(-4deg);}
   .totop:focus-visible{outline:2px solid var(--gold); outline-offset:3px;}
   /* ---------- plate gallery (archive images) ---------- */
   .archive{
     padding:96px 8vw 40px;
-    border-top:1px solid rgba(180,146,58,.12);
+    border-top:1px solid rgba(147,112,30,.2);
   }
   .archive-head{
     display:flex; gap:28px; align-items:flex-start;
@@ -330,7 +332,7 @@
   }
   .plate{
     background:var(--paper); border-radius:3px;
-    box-shadow:0 14px 30px rgba(0,0,0,.28);
+    box-shadow:0 10px 26px rgba(20,45,70,.16);
     overflow:hidden;
     opacity:0; transform:translateY(16px);
     transition:opacity .55s ease, transform .55s ease;
@@ -446,7 +448,7 @@
       <div><strong>7</strong><span>시대</span></div>
       <div><strong>21</strong><span>인물</span></div>
     </div>
-    <p class="scroll-cue"><span class="arrow"></span> 아래로 스크롤</p>
+    <p class="scroll-cue"><span class="arrow"></span> 스크롤 또는 클릭으로 이동</p>
   </header>
 
   <!-- ===== 도판: 시각자료 ===== -->
@@ -930,6 +932,31 @@
   }, {passive:true});
   totop.addEventListener('click', function(){
     window.scrollTo({top:0, behavior:'smooth'});
+  });
+
+  /* 클릭으로 다음 섹션 이동 (스크롤은 그대로 유지) */
+  var pageStops = Array.prototype.slice.call(
+    document.querySelectorAll('.hero, .archive, .era, .addendum')
+  );
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  document.addEventListener('click', function(e){
+    if (e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+    if (e.target.closest('a, button, .rail, .pillnav')) return;
+    var sel = window.getSelection();
+    if (sel && sel.toString().length > 0) return;
+
+    var threshold = window.scrollY + window.innerHeight * 0.25;
+    var idx = -1;
+    for (var i = 0; i < pageStops.length; i++){
+      if (pageStops[i].offsetTop <= threshold) idx = i;
+    }
+    var next = pageStops[idx + 1];
+    if (next){
+      next.scrollIntoView({behavior: reduceMotion ? 'auto' : 'smooth', block:'start'});
+    } else {
+      window.scrollTo({top:document.body.scrollHeight, behavior: reduceMotion ? 'auto' : 'smooth'});
+    }
   });
 })();
 </script>
