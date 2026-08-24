@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>울산을 만든 사람들 · 역사는 흐른다</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Song+Myung&family=Noto+Serif+KR:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#17140f;
+    --ink-2:#1e1a13;
+    --ink-3:#26211a;
+    --paper:#e7dec3;
+    --paper-2:#ddd1ac;
+    --seal:#9c2b22;
+    --seal-dark:#7c211a;
+    --gold:#b4923a;
+    --gold-soft:rgba(180,146,58,.38);
+    --text-onink:#ece4d1;
+    --text-onink-muted:#a79e8a;
+    --text-onpaper:#241f16;
+    --text-onpaper-muted:#6b6248;
+    --font-display:'Song Myung', serif;
+    --font-body:'Noto Serif KR', serif;
+    --font-ui:'Noto Sans KR', sans-serif;
+    --rail-w:96px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:auto;}
+  @media (prefers-reduced-motion: no-preference){
+    html{scroll-behavior:smooth;}
+  }
+  body{
+    margin:0;
+    background:var(--ink);
+    color:var(--text-onink);
+    font-family:var(--font-body);
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--seal); color:var(--paper);}
+
+  a{color:inherit;}
+  h1,h2,h3{margin:0; font-weight:700;}
+
+  /* ---------- texture ---------- */
+  .grain{
+    position:fixed; inset:0; pointer-events:none; z-index:1;
+    opacity:.05; mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+
+  /* ---------- rail nav (desktop) ---------- */
+  .rail{
+    position:fixed; left:0; top:0; bottom:0; width:var(--rail-w);
+    display:flex; align-items:center; z-index:40;
+    border-right:1px solid rgba(180,146,58,.18);
+  }
+  .rail ol{list-style:none; margin:0; padding:0; width:100%;}
+  .rail li{margin:0;}
+  .rail a{
+    display:flex; flex-direction:column; align-items:center; gap:4px;
+    padding:14px 0; text-decoration:none;
+    color:var(--text-onink-muted);
+    font-family:var(--font-ui);
+    transition:color .25s ease;
+  }
+  .rail a:hover, .rail a:focus-visible{color:var(--gold);}
+  .rail a.active{color:var(--gold);}
+  .rail .rail-num{
+    font-family:var(--font-display); font-size:20px; line-height:1;
+  }
+  .rail .rail-label{font-size:10.5px; letter-spacing:.04em;}
+  .rail a:focus-visible{outline:2px solid var(--gold); outline-offset:3px; border-radius:3px;}
+  .rail .rail-dot{
+    width:5px; height:5px; border-radius:50%; background:currentColor; opacity:.5; margin-top:2px;
+  }
+  .rail a.active .rail-dot{opacity:1;}
+
+  @media (max-width: 860px){
+    .rail{display:none;}
+  }
+
+  /* ---------- mobile pill nav ---------- */
+  .pillnav{
+    display:none;
+    position:sticky; top:0; z-index:40;
+    background:rgba(23,20,15,.92); backdrop-filter:blur(6px);
+    border-bottom:1px solid rgba(180,146,58,.2);
+    overflow-x:auto; white-space:nowrap;
+    padding:10px 14px;
+    -ms-overflow-style:none; scrollbar-width:none;
+  }
+  .pillnav::-webkit-scrollbar{display:none;}
+  .pillnav a{
+    display:inline-block; margin-right:8px;
+    padding:6px 14px; border-radius:999px;
+    border:1px solid rgba(180,146,58,.35);
+    font-family:var(--font-ui); font-size:12.5px; color:var(--text-onink-muted);
+    text-decoration:none;
+  }
+  .pillnav a.active{color:var(--ink); background:var(--gold); border-color:var(--gold);}
+  @media (max-width: 860px){
+    .pillnav{display:block;}
+  }
+
+  .content{
+    margin-left:var(--rail-w);
+  }
+  @media (max-width:860px){
+    .content{margin-left:0;}
+  }
+
+  /* ---------- hero ---------- */
+  .hero{
+    min-height:92vh;
+    display:flex; flex-direction:column; align-items:flex-start; justify-content:center;
+    padding:8vh 8vw;
+    position:relative; overflow:hidden;
+  }
+  .hero::before{
+    content:""; position:absolute; right:-12%; top:-18%;
+    width:640px; height:640px; border-radius:50%;
+    background:radial-gradient(circle at 35% 35%, rgba(180,146,58,.14), transparent 70%);
+    pointer-events:none;
+  }
+  .hero-seal{
+    position:absolute; right:9%; top:50%; transform:translateY(-50%) rotate(-6deg);
+    width:190px; height:190px; border:5px double var(--seal);
+    color:var(--seal); display:flex; align-items:center; justify-content:center;
+    font-family:var(--font-display); font-size:64px; letter-spacing:.05em;
+    border-radius:6px; opacity:.85;
+    text-shadow:0 0 18px rgba(156,43,34,.35);
+  }
+  @media (max-width:860px){
+    .hero-seal{display:none;}
+  }
+  .eyebrow{
+    font-family:var(--font-ui); font-size:12.5px; letter-spacing:.16em;
+    color:var(--gold); text-transform:uppercase; margin:0 0 22px;
+  }
+  .hero h1{
+    font-family:var(--font-display); font-weight:400;
+    font-size:clamp(44px, 8vw, 92px); line-height:1.05;
+    color:var(--text-onink); margin:0 0 14px;
+  }
+  .hero .subtitle{
+    font-family:var(--font-body); font-size:clamp(16px,2.4vw,22px);
+    color:var(--text-onink-muted); margin:0 0 44px;
+  }
+  .hero-stats{display:flex; gap:44px; margin-bottom:56px;}
+  .hero-stats div{display:flex; flex-direction:column;}
+  .hero-stats strong{
+    font-family:var(--font-display); font-size:40px; color:var(--gold); line-height:1;
+  }
+  .hero-stats span{
+    font-family:var(--font-ui); font-size:12px; color:var(--text-onink-muted); margin-top:6px; letter-spacing:.05em;
+  }
+  .scroll-cue{
+    font-family:var(--font-ui); font-size:12px; color:var(--text-onink-muted);
+    display:flex; align-items:center; gap:8px;
+  }
+  .scroll-cue .arrow{
+    display:inline-block; width:1px; height:26px; background:linear-gradient(var(--gold), transparent);
+  }
+
+  /* ---------- era section ---------- */
+  .era{
+    padding:96px 8vw 40px;
+    scroll-margin-top:24px;
+    border-top:1px solid rgba(180,146,58,.12);
+  }
+  .era:nth-of-type(even){background:var(--ink-2);}
+
+  .era-head{
+    display:flex; gap:28px; align-items:flex-start;
+    max-width:1180px; margin:0 auto 44px;
+  }
+  .era-mark{
+    flex:none;
+    width:74px; height:74px; border-radius:6px;
+    border:3px double var(--seal);
+    color:var(--seal);
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--font-display); font-size:34px;
+    transform:rotate(-3deg);
+  }
+  .era-eyebrow{
+    font-family:var(--font-ui); font-size:12px; letter-spacing:.14em; color:var(--gold);
+    display:block; margin-bottom:8px;
+  }
+  .era-titles h2{
+    font-family:var(--font-display); font-weight:400;
+    font-size:clamp(28px,4vw,40px); color:var(--text-onink); margin-bottom:10px;
+  }
+  .era-desc{
+    font-family:var(--font-body); font-size:15px; color:var(--text-onink-muted);
+    max-width:640px; margin:0 0 6px; line-height:1.6;
+  }
+  .era-period{
+    font-family:var(--font-ui); font-size:12px; color:var(--gold); letter-spacing:.04em;
+  }
+
+  /* ---------- card grid ---------- */
+  .card-grid{
+    max-width:1180px; margin:0 auto;
+    display:grid; grid-template-columns:repeat(3, 1fr); gap:22px;
+  }
+  @media (max-width:1020px){
+    .card-grid{grid-template-columns:repeat(2, 1fr);}
+  }
+  @media (max-width:680px){
+    .card-grid{grid-template-columns:1fr;}
+  }
+
+  .card{
+    background:var(--paper); color:var(--text-onpaper);
+    border-radius:3px; padding:26px 24px 24px;
+    box-shadow:0 14px 30px rgba(0,0,0,.28);
+    opacity:0; transform:translateY(16px);
+    transition:opacity .55s ease, transform .55s ease;
+    position:relative;
+  }
+  .card.visible{opacity:1; transform:translateY(0);}
+  @media (prefers-reduced-motion: reduce){
+    .card{opacity:1; transform:none; transition:none;}
+  }
+
+  .card-head{display:flex; gap:14px; align-items:flex-start; margin-bottom:14px;}
+  .seal{
+    flex:none; width:38px; height:38px; border-radius:4px;
+    background:var(--seal); color:var(--paper);
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--font-display); font-size:19px;
+    transform:rotate(-4deg);
+    box-shadow:0 2px 6px rgba(0,0,0,.25);
+  }
+  .card-name h3{
+    font-family:var(--font-body); font-size:19px; font-weight:700;
+    display:flex; align-items:baseline; gap:8px; flex-wrap:wrap;
+  }
+  .card-name .hanja{
+    font-family:var(--font-ui); font-size:13px; font-weight:400; color:var(--seal);
+  }
+  .dates{
+    font-family:var(--font-ui); font-size:11.5px; color:var(--text-onpaper-muted);
+    margin:5px 0 0;
+  }
+  .bio{
+    font-family:var(--font-body); font-size:13.5px; line-height:1.68;
+    color:var(--text-onpaper); margin:0 0 18px;
+  }
+  .tag{
+    font-family:var(--font-ui); font-size:11.5px; font-weight:600;
+    background:var(--ink); color:var(--gold);
+    display:inline-block; padding:7px 12px; border-radius:999px;
+    letter-spacing:.01em;
+  }
+
+  /* ---------- addendum (고증노트) ---------- */
+  .addendum{
+    padding:96px 8vw;
+    border-top:1px solid rgba(180,146,58,.12);
+  }
+  .addendum-head{max-width:1180px; margin:0 auto 40px;}
+  .addendum-head .era-eyebrow{margin-bottom:8px;}
+  .addendum-head h2{
+    font-family:var(--font-display); font-weight:400; font-size:clamp(26px,3.6vw,36px);
+    margin-bottom:10px;
+  }
+  .addendum-head p{color:var(--text-onink-muted); font-size:14px; max-width:640px; line-height:1.6;}
+
+  .note-list{max-width:1180px; margin:0 auto; display:flex; flex-direction:column; gap:14px;}
+  .note{
+    display:flex; gap:18px; align-items:flex-start;
+    background:var(--ink-3); border:1px solid rgba(180,146,58,.16);
+    border-radius:4px; padding:18px 22px;
+  }
+  .note-num{
+    flex:none; font-family:var(--font-display); font-size:20px; color:var(--gold);
+    width:28px;
+  }
+  .note-body h4{
+    font-family:var(--font-ui); font-size:14px; font-weight:700; color:var(--text-onink); margin:0 0 6px;
+  }
+  .note-body p{
+    font-family:var(--font-body); font-size:13.5px; color:var(--text-onink-muted);
+    margin:0; line-height:1.6;
+  }
+
+  /* ---------- footer ---------- */
+  footer{
+    padding:56px 8vw 80px;
+    border-top:1px solid rgba(180,146,58,.15);
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;
+  }
+  footer .brand{font-family:var(--font-display); font-size:18px; color:var(--gold);}
+  footer .meta{font-family:var(--font-ui); font-size:11.5px; color:var(--text-onink-muted); text-align:right;}
+
+  /* ---------- back to top ---------- */
+  .totop{
+    position:fixed; right:24px; bottom:24px; z-index:50;
+    width:46px; height:46px; border-radius:6px;
+    background:var(--seal); color:var(--paper);
+    border:none; cursor:pointer;
+    font-family:var(--font-display); font-size:18px;
+    display:flex; align-items:center; justify-content:center;
+    opacity:0; pointer-events:none; transform:translateY(10px) rotate(-4deg);
+    transition:opacity .3s ease, transform .3s ease;
+    box-shadow:0 8px 20px rgba(0,0,0,.35);
+  }
+  .totop.show{opacity:1; pointer-events:auto; transform:translateY(0) rotate(-4deg);}
+  .totop:focus-visible{outline:2px solid var(--gold); outline-offset:3px;}
+</style>
+</head>
+<body>
+
+<div class="grain" aria-hidden="true"></div>
+
+<nav class="rail" aria-label="시대 이동">
+  <ol>
+    <li><a href="#era-1" data-era="1"><span class="rail-num">一</span><span class="rail-label">고대</span><span class="rail-dot"></span></a></li>
+    <li><a href="#era-2" data-era="2"><span class="rail-num">二</span><span class="rail-label">고려</span><span class="rail-dot"></span></a></li>
+    <li><a href="#era-3" data-era="3"><span class="rail-num">三</span><span class="rail-label">조선전기</span><span class="rail-dot"></span></a></li>
+    <li><a href="#era-4" data-era="4"><span class="rail-num">四</span><span class="rail-label">임진왜란</span><span class="rail-dot"></span></a></li>
+    <li><a href="#era-5" data-era="5"><span class="rail-num">五</span><span class="rail-label">조선후기</span><span class="rail-dot"></span></a></li>
+    <li><a href="#era-6" data-era="6"><span class="rail-num">六</span><span class="rail-label">근대</span><span class="rail-dot"></span></a></li>
+    <li><a href="#era-7" data-era="7"><span class="rail-num">七</span><span class="rail-label">현대</span><span class="rail-dot"></span></a></li>
+  </ol>
+</nav>
+
+<nav class="pillnav" aria-label="시대 이동 (모바일)">
+  <a href="#era-1" data-era="1">고대</a>
+  <a href="#era-2" data-era="2">고려</a>
+  <a href="#era-3" data-era="3">조선전기</a>
+  <a href="#era-4" data-era="4">임진왜란기</a>
+  <a href="#era-5" data-era="5">조선후기</a>
+  <a href="#era-6" data-era="6">근대</a>
+  <a href="#era-7" data-era="7">현대</a>
+</nav>
+
+<div class="content">
+
+  <header class="hero">
+    <div class="hero-seal" aria-hidden="true">蔚山</div>
+    <p class="eyebrow">울산대학교 행정학과 특강 자료 · 2026년 9월</p>
+    <h1>울산을 만든 사람들</h1>
+    <p class="subtitle">역사는 흐른다</p>
+    <div class="hero-stats">
+      <div><strong>7</strong><span>시대</span></div>
+      <div><strong>21</strong><span>인물</span></div>
+    </div>
+    <p class="scroll-cue"><span class="arrow"></span> 아래로 스크롤</p>
+  </header>
+
+  <!-- ===== 1. 고대(삼국시대) ===== -->
+  <section id="era-1" class="era" data-era="1">
+    <div class="era-head">
+      <div class="era-mark" aria-hidden="true">古</div>
+      <div class="era-titles">
+        <span class="era-eyebrow">一 · 三國時代</span>
+        <h2>고대(삼국시대)</h2>
+        <p class="era-desc">신라의 변경에서 왕경의 설화까지 — 울산이 처음 역사에 등장하는 순간들</p>
+        <p class="era-period">1세기경 ~ 7세기</p>
+      </div>
+    </div>
+    <div class="card-grid">
+      <article class="card">
+        <div class="card-head">
+          <div class="seal" aria-hidden="true">古</div>
+          <div class="card-name">
+            <h3>거도 <span class="hanja">居道</span></h3>
+            <p class="dates">생몰년 미상 · 신라 탈해이사금대(1세기경)</p>
+          </div>
+        </div>
+        <p class="bio">『삼국사기』 열전에 전하는 신라 변경 관리. '마숙(馬叔)' 놀이로 위장해 군마를 훈련시킨 뒤 기습하여 우시산국(현 울주군 웅촌·온양 일대)을 병합했다.</p>
+        <span class="tag">울산, 신라 영토로 편입되다</span>
+      </article>
+      <article class="card">
+        <div class="card-head">
+          <div class="seal" aria-hidden="true">古</div>
+          <div class="card-name">
+            <h3>진덕여왕 <span class="hanja">眞德女王</span></h3>
+            <p class="dates">?~654 · 재위 647~654</p>
+          </div>
+        </div>
+        <p class="bio">즉위년(647)에 연호를 '태화(太和)'로 고쳤다. 이 연호와 자장율사가 울산에 세운 태화사(太和寺)에서 오늘날 '태화강' 지명이 유래한다.</p>
+        <span class="tag">태화강·태화루 지명의 뿌리</span>
+      </article>
+      <article class="card">
+        <div class="card-head">
+          <div class="seal" aria-hidden="true">古</div>
+          <div class="card-name">
+            <h3>헌강왕 <span class="hanja">憲康王</span></h3>
+            <p class="dates">?~886 · 재위 875~886</p>
+          </div>
+        </div>
+        <p class="bio">개운포(울산) 순행 중 동해용의 아들 처용을 만난 설화가 『삼국유사』에 전한다. 처용가·처용무의 배경이 되어 울산의 대표 설화로 이어진다.</p>
+        <span class="tag">처용설화의 무대, 개운포</span>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===== 2. 고려 ===== -->
+  <section id="era-2" class="era" data-era="2">
+    <div class="era-head">
+      <div class="era-mark" aria-hidden="true">麗</div>
+      <div class="era-titles">
+        <span class="era-eyebrow">二 · 高麗</span>
+        <h2>고려</h2>
+        <p class="era-desc">호족의 자치에서 문신의 유배지로 — 지방 세력과 중앙 권력이 교차하던 시대</p>
+        <p class="era-period">10세기 ~ 14세기</p>
+      </div>
+    </div>
+    <div class="card-grid">
+      <article class="card">
+        <div class="card-head">
+          <div class="seal" aria-hidden="true">麗</div>
+          <div class="card-name">
+            <h3>박윤웅 <span class="hanja">朴允雄</span></h3>
+            <p class="dates">신라말~고려초 · 생몰년 이설(일설 888~951)</p>
+          </div>
+        </div>
+        <p class="bio">울산 학성의 호족, 신학성장군. 고려 태조에 귀부하여 흥려부 성립에 공을 세웠다. 울산김씨·울산박씨 계통의 연원이 된다.</p>
+        <span class="tag">재지 호족 — 임명직 개념 이전</span>
+      </article>
+      <article class="card">
+        <div class="card-head">
+          <div class="seal" aria-hidden="true">麗</div>
+          <div class="card-name">
+            <h3>정포 <span class="hanja">鄭誧</span></h3>
+            <p class="dates">1309~1345</p>
+          </div>
+        </div>
+        <p class="bio">청주 정씨, 좌사간대부 역임. 시정을 비판한 상소 후 참언을 입어 울주로 유배되었고, 울산을 소재로 한 시를 다수 남겼다.</p>
+        <span class="tag">울주 유배(연도 미상)</span>
+      </article>
+      <article class="card">
+        <div class="card-head">
+          <div class="seal" aria-hidden="true">麗</div>
+          <div class="card-name">
+            <h3>정몽주 <span class="hanja">鄭夢周</span></h3>
+            <p class="dates">1337~1392</p>
+          </div>
+        </div>
+        <p class="bio">성리학자, 문하시중. 이인임의 친원 외교를 비판하다 언양에 유배(1375~1377, 약 2년). 작괘천·반구정 등에 자취를 남겼다.</p>
+        <span class="tag">언양현 유배, 약 2년</span>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===== 3. 조선 전기 ===== -->
+  <section id="era-3" class="era" data-era="3">
+    <div class="era-head">
+      <div class="era-mark" aria-hidden="true">鮮</div>
+      <div class="era-titles">
+        <span class="era-eyebrow">三 · 朝鮮 前期</span>
+        <h2>조선 전기</h2>
+        <p class="era-desc">울산 향리 출신 외교관에서 종군일기를 남긴 무관까지</p>
+        <p class="era-period">14세기 ~ 16세기</p>
+      </div>
+    </div>
+    <div class="card-grid">
+      <article class="card">
+        <div class="card-head">
+          <div class="seal" aria-hidden="true">鮮</div>
+          <div class="card-name">
+            <h3>이예 <span class="hanja">李藝</span></h3>
+            <p class="dates">1373~1445</p>
+          </div>
+        </div>
+        <p class="bio">울산 향리 출신. 44년간 40여 회 대일 사행을 통해 포로 667명을 쇄환하고 계해약조 체결을 주도한, 조선 최초의 전문 외교관이다.</p>
+        <span class="tag">울산 향리(記官) → 외교관</span>
+      </article>
+      <article class="card">
+        <div class="card-head">
+          <div class="seal" aria-hidden="true">鮮</div>
+          <div class="card-name">
+            <h3>이징옥 <span class="hanja">李澄玉</span></h3>
+            <p class="dates">1399~1453</p>
+          </div>
+        </div>
+        <p class="bio">함길도 도절제사로 4군 6진 개척에 공을 세웠다. 계유정난 후 파직되자 거병하였다(이징옥의 난).</p>
+        <span class="tag">※양산 출신 — 울산 연고 미확인</span>
+      </article>
+      <article class="card">
+        <div class="card-head">
+          <div class="seal" aria-hidden="true">鮮</div>
+          <div class="card-name">
+            <h3>박취문 <span class="hanja">朴就文</span></h3>
+            <p class="dates">1617~1690</p>
+          </div>
+        </div>
+        <p class="bio">울산 박씨. 부친 박계숙과 함께 부자 2대에 걸친 종군일기 『부북일기』를 남겨 17세기 변방 군관의 생활상을 전한다.</p>
+        <span class="tag">함경도 회령 군관(1644~46)</span>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===== 4. 임진왜란기 ===== -->
+  <section id="era-4" class="era" data-era="4">
+    <div class="era-head">
+      <div class="era-mark" aria-hidden="true">亂</div>
+      <div class="era-titles">
+        <span class="era-eyebrow">四 · 壬辰倭亂</span>
+        <h2>임진왜란기</h2>
+        <p class="era-desc">무너진 고을에서 다시 세운 도호부까지 — 전란 속 울산을 지킨 군수·의병·병마사</p>
+        <p class="era-period">1592 ~ 1599</p>
+      </div>
+    </div>
+    <div class="card-grid">
+      <article class="card">
+        <div class="card-head">
+          <div class="seal" aria-hidden="true">亂</div>
+          <div class="card-name">
+            <h3>김태허 <span class="hanja">金太虛</span></h3>
+            <p class="dates">1554~1620</p>
+          </div>
+        </div>
+        <p class="bio">1592년 울산 가군수로 부임해 흩어진 백성을 모아 관군을 재건하고, 울산성 전투에서 권율을 도와 큰 전공을 세워 정식 울산군수가 되었다.</p>
+        <span class="tag">울산 가군수→정식 군수 1592~1599년경</span>
+      </article>
+      <article class="card">
+        <div class="card-head">
+          <div class="seal" aria-hidden="true">亂</div>
+          <div class="card-name">
+            <h3>서인충 <span class="hanja">徐仁忠</span></h3>
+            <p class="dates">1554~1610</p>
+          </div>
+        </div>
+        <p class="bio">울산 남목동 출신. 의병을 모아 주사장(舟師長)으로 김태허를 도와 육전·수전에서 전공을 세웠다. 이후 다대포첨사·부산진첨절제사 역임.</p>
+        <span class="tag">울산 의병 주사장, 선무원종공신 1등</span>
+      </article>
+      <article class="card">
+        <div class="card-head">
+          <div class="seal" aria-hidden="true">亂</div>
+          <div class="card-name">
+            <h3>김응서 <span class="hanja">金應瑞(金景瑞)</span></h3>
+            <p class="dates">1564~1624</p>
+          </div>
+        </div>
+        <p class="bio">평양성 탈환으로 명성을 얻은 무장. 1599년 울산이 도호부로 승격되자 병마절도사로서 초대 울산도호부사를 겸임했다.</p>
+        <span class="tag">초대 울산도호부사 겸임(1599)</span>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===== 5. 조선 후기 ===== -->
+  <section id="era-5" class="era" data-era="5">
+    <div class="era-head">
+      <div class="era-mark" aria-hidden="true">後</div>
+      <div class="era-titles">
+        <span class="era-eyebrow">五 · 朝鮮 後期</span>
+        <h2>조선 후기</h2>
+        <p class="era-desc">울산에 부임한 목민관들의 초상 — 감목관·부사·현감의 기록</p>
+        <p class="era-period">17세기 ~ 19세기</p>
+      </div>
+    </div>
+    <div class="card-grid">
+      <article class="card">
+        <div class="card-head">
+          <div class="seal" aria-hidden="true">後</div>
+          <div class="card-name">
+            <h3>홍세태 <span class="hanja">洪世泰</span></h3>
+            <p class="dates">1653~1725</p>
+          </div>
+        </div>
+        <p class="bio">역관이자 위항시인. 울산감목관으로 재임(1719~1722년경)하며 울산의 목장과 바닷가 생활상을 담은 시 120여 수를 남겼다.</p>
+        <span class="tag">위항문학의 선구, 『해동유주』</span>
+      </article>
+      <article class="card">
+        <div class="card-head">
+          <div class="seal" aria-hidden="true">後</div>
+          <div class="card-name">
+            <h3>권상일 <span class="hanja">權相一</span></h3>
+            <p class="dates">1679~1759</p>
+          </div>
+        </div>
+        <p class="bio">안동 권씨, 대사간·대사헌 역임. 울산부사(1735~1738)로 구강서원을 중건했으며, 이황을 사숙한 영남 학자였다.</p>
+        <span class="tag">울산부사 재임 약 3~4년</span>
+      </article>
+      <article class="card">
+        <div class="card-head">
+          <div class="seal" aria-hidden="true">後</div>
+          <div class="card-name">
+            <h3>김천상 <span class="hanja">金天相</span></h3>
+            <p class="dates">생몰년 미상</p>
+          </div>
+        </div>
+        <p class="bio">언양현감. 흉년에 백성을 구휼한 공으로 영세불망비가 세워졌으며, 이 비는 지금도 언양읍사무소 경내에 남아 있다.</p>
+        <span class="tag">언양현감 재임 3년(연도 미상)</span>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===== 6. 근대 ===== -->
+  <section id="era-6" class="era" data-era="6">
+    <div class="era-head">
+      <div class="era-mark" aria-hidden="true">近</div>
+      <div class="era-titles">
+        <span class="era-eyebrow">六 · 近代</span>
+        <h2>근대</h2>
+        <p class="era-desc">구한말 지방행정의 실무자에서 개화기 선각자까지</p>
+        <p class="era-period">19세기 말 ~ 20세기 초</p>
+      </div>
+    </div>
+    <div class="card-grid">
+      <article class="card">
+        <div class="card-head">
+          <div class="seal" aria-hidden="true">近</div>
+          <div class="card-name">
+            <h3>오횡묵 <span class="hanja">吳宖默</span></h3>
+            <p class="dates">1834~1906</p>
+          </div>
+        </div>
+        <p class="bio">정선·자인·함안·고성·지도 등 여러 지방관을 역임하고 일기 연작 『총쇄록』을 저술한 기록의 달인이다.</p>
+        <span class="tag">※울산 재임 기록은 미확인</span>
+      </article>
+      <article class="card">
+        <div class="card-head">
+          <div class="seal" aria-hidden="true">近</div>
+          <div class="card-name">
+            <h3>김철정 <span class="hanja">金澈禎</span></h3>
+            <p class="dates">1877~?</p>
+          </div>
+        </div>
+        <p class="bio">본관 울산. 대한제국 관료 출신으로 언양군수(1910~1914)를 거쳐 울산군수(1914~1918)를 지내며 토지조사사업 등 식민 초기 지방행정을 담당했다.</p>
+        <span class="tag">언양군수 → 울산군수(1910~1918)</span>
+      </article>
+      <article class="card">
+        <div class="card-head">
+          <div class="seal" aria-hidden="true">近</div>
+          <div class="card-name">
+            <h3>김홍조 <span class="hanja">金弘祚</span></h3>
+            <p class="dates">1868~1922</p>
+          </div>
+        </div>
+        <p class="bio">울산 개화파 선각자. 경남일보를 창립하고 일신여자고등보통학교 설립기금을 출연했으며, 임시정부에 독립운동 자금을 지원했다.</p>
+        <span class="tag">관직 아님 — 민간 유지</span>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===== 7. 현대 ===== -->
+  <section id="era-7" class="era" data-era="7">
+    <div class="era-head">
+      <div class="era-mark" aria-hidden="true">現</div>
+      <div class="era-titles">
+        <span class="era-eyebrow">七 · 現代</span>
+        <h2>현대</h2>
+        <p class="era-desc">임명직 시장에서 민선 광역시장으로 — 지방자치의 제도적 전환</p>
+        <p class="era-period">20세기 중반 ~</p>
+      </div>
+    </div>
+    <div class="card-grid">
+      <article class="card">
+        <div class="card-head">
+          <div class="seal" aria-hidden="true">現</div>
+          <div class="card-name">
+            <h3>최현배 <span class="hanja">崔鉉培</span></h3>
+            <p class="dates">1894~1970</p>
+          </div>
+        </div>
+        <p class="bio">병영 출신 한글학자. 조선어학회 사건으로 옥고를 치렀고, 광복 후 문교부 편수국장으로 교과서 편찬을 지도했다.</p>
+        <span class="tag">관직 아님 — 학자·행정가</span>
+      </article>
+      <article class="card">
+        <div class="card-head">
+          <div class="seal" aria-hidden="true">現</div>
+          <div class="card-name">
+            <h3>홍승순 <span class="hanja">洪承洵</span></h3>
+            <p class="dates">생몰년 미상</p>
+          </div>
+        </div>
+        <p class="bio">경남도 상공과장 출신. 1962년 울산시 승격의 초대 시장으로 부임하여, 이후 4대 시장도 지냈다.</p>
+        <span class="tag">초대·4대 울산시장</span>
+      </article>
+      <article class="card">
+        <div class="card-head">
+          <div class="seal" aria-hidden="true">現</div>
+          <div class="card-name">
+            <h3>심완구 <span class="hanja">沈完求</span></h3>
+            <p class="dates">1938~2020</p>
+          </div>
+        </div>
+        <p class="bio">12·13대 국회의원. 민선 초대 울산시장(1995)으로 1997년 광역시 승격을 이끌었고, 초대·2대 울산광역시장을 지냈다.</p>
+        <span class="tag">초대·2대 울산광역시장</span>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===== 고증 노트 (addendum) ===== -->
+  <section class="addendum">
+    <div class="addendum-head">
+      <span class="era-eyebrow">附 · 考證</span>
+      <h2>고증 노트</h2>
+      <p>이 기록은 지역사 문헌과 사전류를 종합해 구성한 1차 정리본으로, 아래 항목은 지속적인 검증과 보완이 필요합니다.</p>
+    </div>
+    <div class="note-list">
+      <div class="note">
+        <div class="note-num">01</div>
+        <div class="note-body">
+          <h4>이징옥의 출신지</h4>
+          <p>여러 사료에서 경상남도 양산 출신으로 일관되게 기록되어 있어, 울산과의 직접적 연고는 확인되지 않았습니다.</p>
+        </div>
+      </div>
+      <div class="note">
+        <div class="note-num">02</div>
+        <div class="note-body">
+          <h4>오횡묵의 재임 지역</h4>
+          <p>정선·자인·함안·고성·지도·여수·진보·익산·평택 등 지방관 이력에 울산(울주·언양) 재임 기록은 나타나지 않습니다.</p>
+        </div>
+      </div>
+      <div class="note">
+        <div class="note-num">03</div>
+        <div class="note-body">
+          <h4>생몰년 미상 인물</h4>
+          <p>박윤웅(신라말~고려초, 일설 888~951), 김천상, 홍승순의 생몰년과 김철정의 몰년은 확정된 정설이 없어 이설 또는 미상으로 표기했습니다.</p>
+        </div>
+      </div>
+      <div class="note">
+        <div class="note-num">04</div>
+        <div class="note-body">
+          <h4>김응서와 도호부 승격</h4>
+          <p>김응서(김경서)는 1599년 울산도호부 승격 당시 병마절도사로서 초대 울산도호부사를 겸임했습니다 — 도호부 복설 시점(1598/1599) 논의의 1차 방증 자료입니다.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span class="brand">蔚山 · 울산을 만든 사람들</span>
+    <span class="meta">울산대학교 행정학과 특강 자료 · 2026년 9월 · 7개 시대 21인 · 1차 정리본</span>
+  </footer>
+
+</div>
+
+<button class="totop" id="totop" aria-label="맨 위로 이동">上</button>
+
+<script>
+(function(){
+  var sections = Array.prototype.slice.call(document.querySelectorAll('.era'));
+  var railLinks = Array.prototype.slice.call(document.querySelectorAll('.rail a'));
+  var pillLinks = Array.prototype.slice.call(document.querySelectorAll('.pillnav a'));
+
+  function setActive(era){
+    railLinks.forEach(function(a){
+      a.classList.toggle('active', a.dataset.era === era);
+    });
+    pillLinks.forEach(function(a){
+      a.classList.toggle('active', a.dataset.era === era);
+      if(a.dataset.era === era){
+        a.scrollIntoView({block:'nearest', inline:'center', behavior:'smooth'});
+      }
+    });
+  }
+
+  if('IntersectionObserver' in window){
+    var observer = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          setActive(entry.target.dataset.era);
+        }
+      });
+    }, {rootMargin:'-40% 0px -50% 0px', threshold:0});
+    sections.forEach(function(s){ observer.observe(s); });
+
+    var cardObserver = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add('visible');
+          cardObserver.unobserve(entry.target);
+        }
+      });
+    }, {threshold:0.15});
+    document.querySelectorAll('.card').forEach(function(c){ cardObserver.observe(c); });
+  } else {
+    document.querySelectorAll('.card').forEach(function(c){ c.classList.add('visible'); });
+  }
+
+  var totop = document.getElementById('totop');
+  window.addEventListener('scroll', function(){
+    totop.classList.toggle('show', window.scrollY > window.innerHeight * 0.6);
+  }, {passive:true});
+  totop.addEventListener('click', function(){
+    window.scrollTo({top:0, behavior:'smooth'});
+  });
+})();
+</script>
+
+</body>
+</html>
