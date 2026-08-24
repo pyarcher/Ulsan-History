@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>울산을 만든 사람들 · 역사는 흐른다</title>
+<title>울산을 만든 사람들 · 태화강은 흐른다</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Song+Myung&family=Noto+Serif+KR:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Song+Myung&family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Serif+KR:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --ink:#17140f;
@@ -22,7 +22,8 @@
     --text-onink-muted:#a79e8a;
     --text-onpaper:#241f16;
     --text-onpaper-muted:#6b6248;
-    --font-display:'Song Myung', serif;
+    --font-seal:'Song Myung', serif;
+    --font-title:'Nanum Myeongjo', serif;
     --font-body:'Noto Serif KR', serif;
     --font-ui:'Noto Sans KR', sans-serif;
     --rail-w:96px;
@@ -70,7 +71,7 @@
   .rail a:hover, .rail a:focus-visible{color:var(--gold);}
   .rail a.active{color:var(--gold);}
   .rail .rail-num{
-    font-family:var(--font-display); font-size:20px; line-height:1;
+    font-family:var(--font-seal); font-size:20px; line-height:1;
   }
   .rail .rail-label{font-size:10.5px; letter-spacing:.04em;}
   .rail a:focus-visible{outline:2px solid var(--gold); outline-offset:3px; border-radius:3px;}
@@ -130,7 +131,7 @@
     position:absolute; right:9%; top:50%; transform:translateY(-50%) rotate(-6deg);
     width:190px; height:190px; border:5px double var(--seal);
     color:var(--seal); display:flex; align-items:center; justify-content:center;
-    font-family:var(--font-display); font-size:64px; letter-spacing:.05em;
+    font-family:var(--font-seal); font-size:64px; letter-spacing:.05em;
     border-radius:6px; opacity:.85;
     text-shadow:0 0 18px rgba(156,43,34,.35);
   }
@@ -142,7 +143,7 @@
     color:var(--gold); margin:0 0 22px;
   }
   .hero h1{
-    font-family:var(--font-display); font-weight:400;
+    font-family:var(--font-title); font-weight:800;
     font-size:clamp(30px, 5.4vw, 58px); line-height:1.1;
     color:var(--text-onink); margin:0 0 14px;
     white-space:nowrap;
@@ -154,7 +155,7 @@
   .hero-stats{display:flex; gap:44px; margin-bottom:56px;}
   .hero-stats div{display:flex; flex-direction:column;}
   .hero-stats strong{
-    font-family:var(--font-display); font-size:40px; color:var(--gold); line-height:1;
+    font-family:var(--font-seal); font-size:40px; color:var(--gold); line-height:1;
   }
   .hero-stats span{
     font-family:var(--font-ui); font-size:12px; color:var(--text-onink-muted); margin-top:6px; letter-spacing:.05em;
@@ -185,7 +186,7 @@
     border:3px double var(--seal);
     color:var(--seal);
     display:flex; align-items:center; justify-content:center;
-    font-family:var(--font-display); font-size:34px;
+    font-family:var(--font-seal); font-size:34px;
     transform:rotate(-3deg);
   }
   .era-eyebrow{
@@ -193,7 +194,7 @@
     display:block; margin-bottom:8px;
   }
   .era-titles h2{
-    font-family:var(--font-display); font-weight:400;
+    font-family:var(--font-title); font-weight:800;
     font-size:clamp(28px,4vw,40px); color:var(--text-onink); margin-bottom:10px;
   }
   .era-desc{
@@ -234,12 +235,12 @@
     flex:none; width:38px; height:38px; border-radius:4px;
     background:var(--seal); color:var(--paper);
     display:flex; align-items:center; justify-content:center;
-    font-family:var(--font-display); font-size:19px;
+    font-family:var(--font-seal); font-size:19px;
     transform:rotate(-4deg);
     box-shadow:0 2px 6px rgba(0,0,0,.25);
   }
   .card-name h3{
-    font-family:var(--font-body); font-size:19px; font-weight:700;
+    font-family:var(--font-title); font-size:19px; font-weight:800;
     display:flex; align-items:baseline; gap:8px; flex-wrap:wrap;
   }
   .card-name .hanja{
@@ -268,7 +269,7 @@
   .addendum-head{max-width:1180px; margin:0 auto 40px;}
   .addendum-head .era-eyebrow{margin-bottom:8px;}
   .addendum-head h2{
-    font-family:var(--font-display); font-weight:400; font-size:clamp(26px,3.6vw,36px);
+    font-family:var(--font-title); font-weight:800; font-size:clamp(26px,3.6vw,36px);
     margin-bottom:10px;
   }
   .addendum-head p{color:var(--text-onink-muted); font-size:14px; max-width:640px; line-height:1.6;}
@@ -280,7 +281,7 @@
     border-radius:4px; padding:18px 22px;
   }
   .note-num{
-    flex:none; font-family:var(--font-display); font-size:20px; color:var(--gold);
+    flex:none; font-family:var(--font-seal); font-size:20px; color:var(--gold);
     width:28px;
   }
   .note-body h4{
@@ -297,7 +298,7 @@
     border-top:1px solid rgba(180,146,58,.15);
     display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px;
   }
-  footer .brand{font-family:var(--font-display); font-size:18px; color:var(--gold);}
+  footer .brand{font-family:var(--font-title); font-weight:800; font-size:18px; color:var(--gold);}
   footer .meta{font-family:var(--font-ui); font-size:11.5px; color:var(--text-onink-muted); text-align:right;}
 
   /* ---------- back to top ---------- */
@@ -306,7 +307,7 @@
     width:46px; height:46px; border-radius:6px;
     background:var(--seal); color:var(--paper);
     border:none; cursor:pointer;
-    font-family:var(--font-display); font-size:18px;
+    font-family:var(--font-seal); font-size:18px;
     display:flex; align-items:center; justify-content:center;
     opacity:0; pointer-events:none; transform:translateY(10px) rotate(-4deg);
     transition:opacity .3s ease, transform .3s ease;
@@ -314,6 +315,98 @@
   }
   .totop.show{opacity:1; pointer-events:auto; transform:translateY(0) rotate(-4deg);}
   .totop:focus-visible{outline:2px solid var(--gold); outline-offset:3px;}
+  /* ---------- plate gallery (archive images) ---------- */
+  .archive{
+    padding:96px 8vw 40px;
+    border-top:1px solid rgba(180,146,58,.12);
+  }
+  .archive-head{
+    display:flex; gap:28px; align-items:flex-start;
+    max-width:1180px; margin:0 auto 44px;
+  }
+  .plate-grid{
+    max-width:1180px; margin:0 auto;
+    display:grid; grid-template-columns:repeat(3, 1fr); gap:22px;
+  }
+  .plate{
+    background:var(--paper); border-radius:3px;
+    box-shadow:0 14px 30px rgba(0,0,0,.28);
+    overflow:hidden;
+    opacity:0; transform:translateY(16px);
+    transition:opacity .55s ease, transform .55s ease;
+  }
+  .plate.visible{opacity:1; transform:translateY(0);}
+  @media (prefers-reduced-motion: reduce){
+    .plate{opacity:1; transform:none; transition:none;}
+  }
+  .plate.plate-wide{grid-column:1 / -1;}
+  .plate-frame{
+    height:380px; display:flex; align-items:center; justify-content:center;
+    background:#d8cca4; padding:14px;
+  }
+  .plate-wide .plate-frame{height:320px;}
+  .plate-frame img{
+    max-width:100%; max-height:100%; width:auto; height:auto;
+    object-fit:contain; display:block;
+    box-shadow:0 4px 14px rgba(0,0,0,.2);
+  }
+  .plate-caption{
+    display:flex; align-items:center; gap:12px;
+    padding:14px 20px;
+  }
+  .plate-num{
+    flex:none; width:32px; height:32px; border-radius:4px;
+    background:var(--seal); color:var(--paper);
+    display:flex; align-items:center; justify-content:center;
+    font-family:var(--font-seal); font-size:16px;
+    transform:rotate(-4deg);
+  }
+  .plate-caption h3{
+    font-family:var(--font-body); font-size:15px; font-weight:700;
+    color:var(--text-onpaper); margin:0;
+  }
+  .plate-caption .plate-sub{
+    display:block; font-family:var(--font-ui); font-size:11px;
+    color:var(--text-onpaper-muted); margin-top:2px; font-weight:400;
+  }
+  @media (max-width:860px){
+    .plate-grid{grid-template-columns:1fr;}
+    .plate.plate-wide{grid-column:auto;}
+    .plate-frame{height:260px;}
+    .plate-wide .plate-frame{height:220px;}
+  }
+
+
+  @media print{
+    :root{
+      --ink:#ffffff; --ink-2:#ffffff; --ink-3:#f4f0e4;
+      --text-onink:#241f16; --text-onink-muted:#5c5645;
+    }
+    body{background:#fff; color:#241f16;}
+    .grain, .rail, .pillnav, .totop{display:none !important;}
+    .content{margin-left:0;}
+    .hero{min-height:auto; padding:20px 6vw 40px; page-break-after:always;}
+    .hero::before{display:none;}
+    .hero-seal{border-color:#9c2b22; opacity:1;}
+    .hero h1{color:#17140f; white-space:normal;}
+    .scroll-cue{display:none;}
+    .era{padding:24px 6vw; border-top:1px solid #ddd; page-break-inside:avoid;}
+    .archive{padding:24px 6vw; page-break-inside:avoid;}
+    .plate{opacity:1 !important; transform:none !important; box-shadow:none; border:1px solid #cbbf9e; page-break-inside:avoid;}
+    .plate-frame{background:#efe6cf;}
+    .era:nth-of-type(even){background:#faf7ee;}
+    .era-titles h2{color:#17140f;}
+    .card-grid{grid-template-columns:repeat(2, 1fr); gap:14px;}
+    .card{
+      opacity:1 !important; transform:none !important; box-shadow:none;
+      border:1px solid #cbbf9e; page-break-inside:avoid;
+    }
+    .tag{background:#17140f;}
+    .addendum{padding:24px 6vw; page-break-before:always;}
+    .note{border:1px solid #cbbf9e; background:#faf7ee;}
+    footer{border-top:1px solid #ddd;}
+    a[href]::after{content:"";}
+  }
 </style>
 </head>
 <body>
@@ -348,13 +441,63 @@
     <div class="hero-seal" aria-hidden="true">蔚山</div>
     <p class="eyebrow">은월봉 샌님(pyarcher.netlify.app)</p>
     <h1>울산을 만든 사람들</h1>
-    <p class="subtitle">역사는 흐른다</p>
+    <p class="subtitle">태화강은 흐른다</p>
     <div class="hero-stats">
       <div><strong>7</strong><span>시대</span></div>
       <div><strong>21</strong><span>인물</span></div>
     </div>
     <p class="scroll-cue"><span class="arrow"></span> 아래로 스크롤</p>
   </header>
+
+  <!-- ===== 도판: 시각자료 ===== -->
+  <section class="archive" id="archive">
+    <div class="archive-head">
+      <div class="era-mark" aria-hidden="true">圖</div>
+      <div class="era-titles">
+        <span class="era-eyebrow">附圖 · 史料</span>
+        <h2>울산을 담은 기록들</h2>
+        <p class="era-desc">연표와 옛 지도로 먼저 만나는 울산 — 인물의 이야기에 앞선 시공간의 밑그림</p>
+      </div>
+    </div>
+    <div class="plate-grid">
+      <article class="plate plate-wide">
+        <div class="plate-frame">
+          <img src="chronology.png" alt="울산 역사 연표 — 선사·고대부터 현대까지" loading="lazy">
+        </div>
+        <div class="plate-caption">
+          <div class="plate-num" aria-hidden="true">一</div>
+          <h3>울산 역사 연표<span class="plate-sub">태화강은 흐른다 — 선사시대부터 오늘의 울산까지</span></h3>
+        </div>
+      </article>
+      <article class="plate">
+        <div class="plate-frame">
+          <img src="harmony2.png" alt="태화 울산 — 이대류 이대화 개념도" loading="lazy">
+        </div>
+        <div class="plate-caption">
+          <div class="plate-num" aria-hidden="true">二</div>
+          <h3>태화 울산<span class="plate-sub">太和 · 정원박람회 테마 개념도</span></h3>
+        </div>
+      </article>
+      <article class="plate">
+        <div class="plate-frame">
+          <img src="oldmap1.jpg" alt="1872년 지방지도 — 울산도호부" loading="lazy">
+        </div>
+        <div class="plate-caption">
+          <div class="plate-num" aria-hidden="true">三</div>
+          <h3>울산도호부<span class="plate-sub">1872년 지방지도</span></h3>
+        </div>
+      </article>
+      <article class="plate">
+        <div class="plate-frame">
+          <img src="oldmap2.jpg" alt="1872년 지방지도 — 언양현" loading="lazy">
+        </div>
+        <div class="plate-caption">
+          <div class="plate-num" aria-hidden="true">四</div>
+          <h3>언양현<span class="plate-sub">1872년 지방지도</span></h3>
+        </div>
+      </article>
+    </div>
+  </section>
 
   <!-- ===== 1. 고대(삼국시대) ===== -->
   <section id="era-1" class="era" data-era="1">
@@ -776,9 +919,9 @@
         }
       });
     }, {threshold:0.15});
-    document.querySelectorAll('.card').forEach(function(c){ cardObserver.observe(c); });
+    document.querySelectorAll('.card, .plate').forEach(function(c){ cardObserver.observe(c); });
   } else {
-    document.querySelectorAll('.card').forEach(function(c){ c.classList.add('visible'); });
+    document.querySelectorAll('.card, .plate').forEach(function(c){ c.classList.add('visible'); });
   }
 
   var totop = document.getElementById('totop');
